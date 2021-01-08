@@ -1,47 +1,66 @@
-class ClassName {
 
-    static propertyName: string = "static property value";
-    
-    public propertyName: string = "default value";
 
-    protected protectedPropertyName: string = "default protected value";
+class LunchCoolerBox {
 
-    private privatePropertyName: string = "default private value";
+    // How do I hide this until called?
+    items = ["sandwich", "granola bar", "water bottle"]
+    //
 
-    constructor(){
-        this.propertyName = "default value";
+    isOpen:boolean = false;
+    contents:boolean = false;
+    isFull: boolean = false;
+
+    constructor( newItem?:string ){
     }
 
-    methodName(){
-        this.privatePropertyName = "new property name";
+    openLid() {
+        this.isOpen = true;
+    };
+
+    hasNoContents (){
+        return this.contents;
     }
 
-    readStatic(){
-        return ClassName.propertyName;
+    hasContents(){
+        if (this.isOpen == true){
+            this.contents = true;
+        }
     }
 
-    static readStatic(){
-        this.propertyName;
+    insertContents(){
+       this.isOpen && this.items.push()
+       return this.items;
     }
 
+    // removeItems (){
+    //     this.isOpen && this.items(this.newItem)
+    // }
+
+    tippedUpsidedown() {
+        this.contents = false;
+    }
+
+    closeLid() {
+        this.isOpen = false;
+    }
+
+    maxItems() {
+        if (this.items.length >= 3) {
+            this.isFull = true;
+        }
+    }
 }
 
-class AnotherClassName extends ClassName {
+const example1 = new LunchCoolerBox();
+example1.openLid();
+example1.hasContents();
+example1.maxItems();
 
-    anotherMethodName(){
-        this.protectedPropertyName = "another value";
-    }
+console.log("example1", example1)
 
-}
+const example2 = new LunchCoolerBox();
+example2.openLid();
+example2.maxItems();
+example2.tippedUpsidedown();
 
-const classInstance = new ClassName();
-classInstance.propertyName = "1";
-
-const anotherClassInstance = new AnotherClassName();
-anotherClassInstance.propertyName = "2";
-
-ClassName.propertyName = "3";
-
-console.log( ClassName.propertyName );
-console.log( classInstance.propertyName, classInstance.readStatic() );
-console.log( anotherClassInstance.propertyName, classInstance.readStatic() );
+console.log("Example 2", example2)
